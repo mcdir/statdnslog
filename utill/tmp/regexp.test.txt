@@ -1,0 +1,11 @@
+with time
+	01-Nov-2013 13:55:56.263 queries: info: client 192.168.29.1#60788: query: wget.dev IN A + (192.168.29.1)
+
+not time
+	queries: info: client 192.168.29.2#52352: query: japi.icq.com IN A + (192.168.29.1)
+
+not time and no queries
+	client 192.168.29.2#52352: query: japi.icq.com IN A + (192.168.29.1)
+
+no queries
+	10-Nov-2013 12:15:22.468 client 192.168.29.100#1026: query: time-a.nist.gov IN A + (192.168.29.1)

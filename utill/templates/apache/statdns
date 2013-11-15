@@ -1,0 +1,21 @@
+Alias /statdns /usr/share/statdns/web
+
+<Directory /usr/share/statdns/web >
+    AddHandler cgi-script .cgi
+
+    DirectoryIndex index.php index.phtml index.html index.cgi index.pl index.xhtml
+    Options FollowSymLinks +ExecCGI
+    AllowOverride All
+    Order deny,allow
+
+    Allow from 127.0.0.0/255.0.0.0 ::1/128
+    #Allow from 192.168.1.0/24
+
+    #AuthType Basic
+    #AuthName "Restricted Files"
+    #AuthUserFile /etc/apache2/passwords
+    #Require user work
+
+    Deny from all
+
+</Directory>

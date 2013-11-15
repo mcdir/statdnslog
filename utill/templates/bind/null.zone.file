@@ -1,0 +1,16 @@
+$ORIGIN  101com.com.
+$TTL 86400 ; 1 day
+@ IN SOA localhost. root.localhost. (
+        2008041501 ; serial
+        10800 ; refresh (3 hours)
+        900 ; retry (15 minutes)
+        604800 ; expire (1 week)
+        86400 ; minimum (1 day)
+)
+@ IN NS localhost.
+@ IN A 127.0.0.1
+www IN CNAME 101com.com.
+
+; Machine Names
+ns1     IN      A       127.0.0.1
+*       IN      A       127.0.0.1

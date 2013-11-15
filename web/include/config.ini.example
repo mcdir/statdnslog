@@ -1,0 +1,19 @@
+[db]
+host=localhost
+port=3306
+dbname = statdns
+username = username
+password = password
+
+[bind config]
+bind_query_log_file = /var/log/named/query.log
+bind_blocklist_conf = /etc/bind/blocklist.conf
+bind_blocklist_adsblock_file = /root/statdns/named.conf.adsblock
+bind_blocklist_append_file = /etc/bind/ban.txt
+bind_blockzone_path = /etc/bind/block
+bind_zone_ip = 127.0.0.1
+bind_zone_notify_no = no
+
+[options]
+save=yes
+test=no
