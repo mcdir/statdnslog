@@ -120,7 +120,7 @@ if(!file_exists($bind_blocklist_adsblock_file)){
 // }}}
 
 $aList = file($bind_blocklist_adsblock_file);
-$sConf = file_get_content($bind_blocklist_conf);
+$sConf = file_get_contents($bind_blocklist_conf);
 if($bVerbose)
 	echo "reade ".count($aList)." line frome {$bind_blocklist_adsblock_file}\n";
 if(!count($aList))

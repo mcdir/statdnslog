@@ -3,7 +3,7 @@
 
 chmod 744 add_from_blacklist.php append_from_text_blacklist.php \
   parce_bind_log.php bindLogCheck.sh bindupdate.sh  create_db.php \
-  install.sh update_bind_log_analyzer.sh
+  install.sh
 
 echo -e "create table in db\n"
 ./create_db.php
