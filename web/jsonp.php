@@ -4,7 +4,6 @@ function fatal_error( $sErrorMessage = '' )
 	header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error');
 	die($sErrorMessage);
 }
-$aConfig = parse_ini_file(dirname(__FILE__).'/../web/include/config.ini');
 
 $bSearch = false;
 if(!isset($_GET['GroupeByDNS']))

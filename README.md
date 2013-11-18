@@ -8,6 +8,12 @@ Simple analysis and SQL storage (mysql option) for Bind DNS server's logs.
 The soft includes a web interface to analyze the data collected from the analyzed logs, and create config BIND9 for ban
 DNS from list.
 
+### Site 
+http://statdns.nedze.com
+
+### Demo 
+http://demo.statdns.nedze.com
+	
 ## Requirements
 
 This gem was tested with:
