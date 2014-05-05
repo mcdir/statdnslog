@@ -2627,6 +2627,6 @@ try
 
 }catch (PDOException $e)
 {
-	print "Error!: " . $e->getMessage() . "<br/>";
+	print "Error!: " . $e->getMessage() . PHP_EOL;
 	die();
 }

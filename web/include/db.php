@@ -5,9 +5,10 @@ try
 	$aConfig['username'],
 	$aConfig['password'],array(
 		PDO::ATTR_PERSISTENT => false
-	));
+	)
+	);
 }catch (PDOException $e)
 {
-	print "Error!: " . $e->getMessage() . "<br/>";
+	print "Error!: " . $e->getMessage() . PHP_EOL;
 	die();
 }

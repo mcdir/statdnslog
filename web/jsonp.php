@@ -6,7 +6,7 @@ function fatal_error( $sErrorMessage = '' )
 }
 
 $bSearch = false;
-if(!isset($_GET['GroupeByDNS']))
+if(!isset($_GET['GroupeByDNS'])){
 	$aColumns = array(
 		'dates',
 		'date_time',
@@ -15,6 +15,7 @@ if(!isset($_GET['GroupeByDNS']))
 		'client_port',
 		'querys'
 	);
+}
 else
 	$aColumns = array(
 		'dates',

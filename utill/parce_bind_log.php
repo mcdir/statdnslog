@@ -18,6 +18,7 @@ $aParams = getopt('f::vsht',array(
 ));
 
 require_once dirname(__FILE__).'/../web/include/functions.php';
+// /usr/share/statdns/web/include/config.ini
 $aConfig = file_exists(dirname(__FILE__).'/../web/include/config.ini')
 	? parse_ini_file(dirname(__FILE__).'/../web/include/config.ini')
 	: array();
