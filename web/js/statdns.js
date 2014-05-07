@@ -25,14 +25,17 @@ $(function()
 			if(typeof(oTableGroup)=='undefined')
 			{
 				var oTableGroup = $('#GroupByDNS').dataTable( {
+	
 					"bDestroy": true,
+	
 					"bProcessing": true,
 					"bServerSide": true,
 					"sPaginationType": "full_numbers",
 					"iDisplayLength": 100,
-					"aLengthMenu": [[100, 250, 500, -1], [100, 250, 500,-1]],
+					"aLengthMenu": [[100, 250, 500, -1], [100, 250, 500, "All"]],
 					"aaSorting": [[ 0, "desc" ]],
 					"sAjaxSource": "jsonp.php",
+					//"fnServerData": fnDataTablesPipeline // cache
 					"fnServerData": function( sUrl, aoData, fnCallback, oSettings ) {
 						aoData.push( { "name": "GroupeByDNS", "value": "1" } );
 						if($('#bannedOnlyGroup:checked').length){
@@ -50,7 +53,7 @@ $(function()
 				$('#bannedOnlyGroup').on('change',function( event ) {
 					oTableGroup.fnReloadAjax();
 				});
-
+	
 				var asInitVals2 = new Array();
 				$("#part_GroupByDNS tfoot input").on('keyup', function () {
 					oTableGroup.fnFilter( this.value, $("#part_GroupByDNS tfoot input").index(this) );
@@ -74,18 +77,26 @@ $(function()
 				} );
 			}
 		}
+
+		e.preventDefault();
 		return false;
 	});
 
 	var oTable = $('#dnslist').dataTable( {
+
 		"bDestroy": true,
+
 		"bProcessing": true,
 		"bServerSide": true,
-		"sPaginationType": "full_numbers",
+		"sPaginationType": "full_numbers", //two_button
+		//"bLengthChange": false,
+		//"bPaginate": false,
+
 		"iDisplayLength": 100,
 		"aLengthMenu": [[100, 250, 500, -1], [100, 250, 500, "All"]],
 		"aaSorting": [[ 0, "desc" ]],
 		"sAjaxSource": "jsonp.php",
+		//"fnServerData": fnDataTablesPipeline // cache
 		"fnServerData": function( sUrl, aoData, fnCallback, oSettings ) {
 			if($('#bannedOnly:checked').length){
 				aoData.push( { "name": "onlyBan", "value": "1" } );
@@ -104,8 +115,13 @@ $(function()
 	});
 	var asInitVals = new Array();
 	$("#dnslist tfoot input").on('keyup', function () {
+		/* Filter on the column (the index) of this element */
 		oTable.fnFilter( this.value, $("#dnslist tfoot input").index(this) );
 	} );
+	/*
+	 * Support functions to provide a little bit of
+	 * 'user friendlyness' to the textboxes in the footer
+	 */
 	$("#dnslist tfoot input").each( function (i) {
 		asInitVals[i] = this.value;
 	} );

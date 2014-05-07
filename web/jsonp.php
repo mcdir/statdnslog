@@ -28,6 +28,7 @@ $aConfig = file_exists(dirname(__FILE__).'/include/config.ini')
 	: array();
 include_once dirname(__FILE__).'/include/db.php';
 
+// Ordering
 $sOrder = "";
 if(isset($_GET['iSortCol_0']))
 {
@@ -62,6 +63,7 @@ if(isset($_GET['sSearch']) && $_GET['sSearch'] != "")
 	$sWhere .= ')';
 }
 
+// Individual column filtering
 for( $i = 0; $i < count($aColumns); $i++ )
 {
 	if(isset($_GET['bSearchable_' . $i]) && $_GET['bSearchable_' . $i] == "true" && $_GET['sSearch_' . $i] != '')
@@ -98,7 +100,9 @@ if(!$bSearch && isset($_GET['iDisplayStart']) && $_GET['iDisplayLength'] == '-1'
 
 $sGroupBy ='';
 if(isset($_GET['GroupeByDNS']))
+{
 	$sGroupBy=' GROUP BY dns_log.dates,dns_log.dns,client_ip ';
+}
 
 $rResult = $dbh->query(
 	'SELECT SQL_CALC_FOUND_ROWS dns_log.dates,dns_log.date_time,dns_log.dns,
@@ -120,15 +124,18 @@ $rResult = $dbh->query(
 if(!$rResult)
 	fatal_error('Some Error (');
 
+// Data set length after filtering
 $iFilteredTotal = $dbh->query(
 	'SELECT FOUND_ROWS()'
 )->fetch(PDO::FETCH_COLUMN);
 
+// Total data set length
 $iTotal = $dbh->query(
 	'SELECT COUNT(dates)
 	FROM `dns_log`'
 )->fetch(PDO::FETCH_COLUMN);
 
+// Output
 $output = array(
 	"sEcho" => intval($_GET['sEcho']),
 	"iTotalRecords" => $iTotal,
@@ -145,7 +152,11 @@ foreach ($rResult as $k=>$aRow)
 			if($aColumns[$i] == "version")
 				$row[] = ($aRow[$aColumns[$i]] == "0") ? '-' : $aRow[$aColumns[$i]];
 			elseif($aColumns[$i] != ' ')
+			{
 				$row[] = $aRow[$aColumns[$i]];
+				//$sTmp = preg_replace('/.+ +AS +/is', '', $aColumns[$i]);
+				//$row[] = $aRow[$sTmp];
+			}
 		}
 	}
 	if($aRow['type']){
