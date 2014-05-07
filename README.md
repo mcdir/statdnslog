@@ -58,15 +58,14 @@ example ( linux command line ):
     save=yes
     test=no
 
-## end confog
+## Config DB
 
-- create db `statdns` mysql
+create db `statdns` mysql:
 
     echo "CREATE DATABASE IF NOT EXISTS statdns;" | mysql -uroot -p
+run under root or sudo:
 
-- run:
     bash utill/install.sh
-
 
 ### Bind9
 
@@ -96,5 +95,7 @@ or the regexp will fail :(
 
 
 For parce log run:
+
     ./parce_bind_log.php -v
+
 
